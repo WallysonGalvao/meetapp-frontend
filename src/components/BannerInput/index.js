@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useField } from '@rocketseat/unform';
+import { MdCameraEnhance } from 'react-icons/md';
+
 import api from '~/services/api';
 
 import { Container } from './styles';
@@ -12,6 +14,7 @@ export default function BannerInput() {
     const [preview, setPreview] = useState(defaultValue && defaultValue.url);
 
     const ref = useRef();
+
     useEffect(() => {
         if (ref.current) {
             registerField({
@@ -38,7 +41,12 @@ export default function BannerInput() {
     return (
         <Container>
             <label htmlFor="banner">
-                {!preview && <strong>Selecionar Banner</strong>}
+                {!preview && (
+                    <strong>
+                        <MdCameraEnhance size={40} color="#eee" />
+                        Selecionar imagem
+                    </strong>
+                )}
                 <img src={preview} alt="" />
                 <input
                     type="file"

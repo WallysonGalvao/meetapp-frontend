@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import { Link } from 'react-router-dom';

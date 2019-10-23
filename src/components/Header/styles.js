@@ -31,14 +31,11 @@ export const Content = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     nav {
         display: flex;
         align-items: center;
-        img {
-            margin-right: 20px;
-            padding-right: 20px;
-            border-right: 1px solid #ccc;
-        }
+
         span {
             font-weight: bold;
             color: #d44059;

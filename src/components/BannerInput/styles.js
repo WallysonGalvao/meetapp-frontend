@@ -5,12 +5,6 @@ export const Container = styled.div`
     flex-direction: column;
     margin-bottom: 15px;
 
-    span {
-        margin-top: 10px;
-        padding-top: 10px;
-        margin-bottom: 10px;
-    }
-
     label {
         display: flex;
         align-items: center;
@@ -33,6 +27,9 @@ export const Container = styled.div`
         }
 
         strong {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             position: absolute;
             color: #fff;
             font-size: 22px;

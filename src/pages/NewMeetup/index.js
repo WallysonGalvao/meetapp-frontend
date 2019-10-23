@@ -47,8 +47,8 @@ export default function NewMeetup() {
                     multiline
                     rows={5}
                 />
-                <DatePicker name="date" placeholder="Data" />
-                <Input name="location" placeholder="Localização do meetup" />
+                <DatePicker name="date" placeholder="Data do meetup" />
+                <Input name="location" placeholder="Localização" />
                 <button type="submit" disabled={loading}>
                     {loading ? 'Salvando...' : 'Salvar meetup'}
                 </button>
