@@ -5,7 +5,10 @@ import { Link } from 'react-router-dom';
 import { MdAddCircleOutline, MdChevronRight } from 'react-icons/md';
 
 import api from '~/services/api';
-import { Container, Header, ItemMeetup, Wrapper, Loading } from './styles';
+
+import Loading from '~/components/Loading';
+
+import { Container, Header, ItemMeetup, Wrapper } from './styles';
 
 export default function Dashboard() {
     const [meetups, setMeetups] = useState([]);
@@ -33,6 +36,8 @@ export default function Dashboard() {
         loadMeetups();
     }, []);
 
+    if (loading) return <Loading>Carregando...</Loading>;
+
     return (
         <Container>
             <Header>
@@ -46,28 +51,21 @@ export default function Dashboard() {
                 </Link>
             </Header>
 
-            {loading ? (
-                <Loading>Carregando...</Loading>
-            ) : (
-                <ul>
-                    {meetups.map(meetup => (
-                        <ItemMeetup key={meetup.id}>
-                            <Wrapper>
-                                <span> {meetup.title}</span>
-                                <div>
-                                    <span>{meetup.date}</span>
-                                    <Link to={`/detail/${meetup.id}`}>
-                                        <MdChevronRight
-                                            size={20}
-                                            color="#fff"
-                                        />
-                                    </Link>
-                                </div>
-                            </Wrapper>
-                        </ItemMeetup>
-                    ))}
-                </ul>
-            )}
+            <ul>
+                {meetups.map(meetup => (
+                    <ItemMeetup key={meetup.id}>
+                        <Wrapper>
+                            <span> {meetup.title}</span>
+                            <div>
+                                <span>{meetup.date}</span>
+                                <Link to={`/detail/${meetup.id}`}>
+                                    <MdChevronRight size={20} color="#fff" />
+                                </Link>
+                            </div>
+                        </Wrapper>
+                    </ItemMeetup>
+                ))}
+            </ul>
         </Container>
     );
 }

@@ -1,15 +1,6 @@
 import styled from 'styled-components';
 import { lighten } from 'polished';
 
-export const Loading = styled.strong`
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    font-size: 25px;
-    color: #fff;
-    margin-top: 30px;
-`;
-
 export const Container = styled.div`
     max-width: 900px;
     margin: 15px auto;

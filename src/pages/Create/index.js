@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
+import { MdAddCircleOutline } from 'react-icons/md';
 
-import { Container, TextArea } from './styles';
 import history from '~/services/history';
 import api from '~/services/api';
+
 import DatePicker from '~/components/DatePickerInput';
 import BannerInput from '~/components/BannerInput';
+import Loading from '~/components/Loading';
+
+import { Container, TextArea } from './styles';
 
 const schema = Yup.object().shape({
     file_id: Yup.number()
@@ -19,7 +23,7 @@ const schema = Yup.object().shape({
     location: Yup.string().required('Digite a localização do evento'),
 });
 
-export default function NewMeetup() {
+export default function Create() {
     const [loading, setLoading] = useState(false);
 
     async function handleSubmit(data) {
@@ -36,6 +40,9 @@ export default function NewMeetup() {
             setLoading(false);
         }
     }
+
+    if (loading) return <Loading>Carregando...</Loading>;
+
     return (
         <Container>
             <Form schema={schema} onSubmit={handleSubmit}>
@@ -50,6 +57,7 @@ export default function NewMeetup() {
                 <DatePicker name="date" placeholder="Data do meetup" />
                 <Input name="location" placeholder="Localização" />
                 <button type="submit" disabled={loading}>
+                    <MdAddCircleOutline size={20} color="#eee" />
                     {loading ? 'Salvando...' : 'Salvar meetup'}
                 </button>
             </Form>

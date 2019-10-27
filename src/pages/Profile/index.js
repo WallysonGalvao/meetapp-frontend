@@ -16,14 +16,19 @@ const schema = Yup.object().shape({
     oldPassword: Yup.string(),
     password: Yup.string().when('oldPassword', (oldPassword, field) =>
         oldPassword
-            ? field.required().min(6, 'A senha deve possuir 6 caracteres')
+            ? field
+                  .required()
+                  .min(6, 'A senha deve possuir no minímo 6 caracteres')
             : field
     ),
     confirmPassword: Yup.string().when('password', (password, field) =>
         password
             ? field
                   .required()
-                  .oneOf([Yup.ref('password'), null], 'Senhas devem ser iguais')
+                  .oneOf(
+                      [Yup.ref('password'), null],
+                      'As senhas devem ser iguais'
+                  )
             : field
     ),
 });

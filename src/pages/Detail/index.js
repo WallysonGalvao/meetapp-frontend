@@ -13,7 +13,9 @@ import PropTypes from 'prop-types';
 import api from '~/services/api';
 import history from '~/services/history';
 
-import { Container, TitleContainer, InfoContainer, Loading } from './styles';
+import { Container, TitleContainer, InfoContainer } from './styles';
+
+import Loading from '~/components/Loading';
 
 export default function Detail({ match }) {
     const { id } = match.params;
@@ -32,11 +34,11 @@ export default function Detail({ match }) {
                     }
                 );
                 setMeetup({ ...data, date: formatted, url: data.File.url });
-                setLoading(false);
             } catch (err) {
-                toast.error('Erro ao recuperar o meetup, ente novamente');
-                setLoading(false);
+                toast.error('Erro ao recuperar o meetup, tente novamente');
                 history.push('/dashboard');
+            } finally {
+                setLoading(false);
             }
         }
 
@@ -44,7 +46,7 @@ export default function Detail({ match }) {
     }, [id]);
 
     function handleEdit() {
-        history.push(`/meetup/edit/${id}`);
+        history.push(`/edit/${id}`);
     }
 
     async function handleCancel() {
@@ -56,8 +58,8 @@ export default function Detail({ match }) {
             const errData = err.response.data;
             toast.error(
                 errData && errData.error
-                    ? `Error cancel: ${errData.error}`
-                    : 'Error cancel meetup, try again'
+                    ? `Erro ao deletar: ${errData.error}`
+                    : 'Erro ao deletar meetup, tente novamente'
             );
         }
     }
